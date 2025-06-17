@@ -40,7 +40,7 @@ const EmpTable = ({
               <th className="p-2 text-left">First Name</th>
               <th className="p-2 text-left">Last Name</th>
               <th className="p-2 text-left">Email</th>
-              <th className="p-2 text-left">Actions</th>
+              <th className="p-2 text-end">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -55,7 +55,7 @@ const EmpTable = ({
                     <div className="dropdown" ref={dropdownRef}>
                       <button
                         type="button"
-                        className="p-1 rounded inline-flex items-center"
+                        className="p-1 rounded inline-flex items-center text-lg"
                         onClick={() =>
                           toggleDropdown(
                             openDropdownId,
