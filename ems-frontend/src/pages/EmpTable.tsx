@@ -1,4 +1,4 @@
-import type { Employee } from "../assets/empType";
+import type { Employee } from "../types/empType";
 import { useState, useRef, useEffect } from "react";
 import { numEnToBn, toggleDropdown } from "../utils/empSearchUtils";
 

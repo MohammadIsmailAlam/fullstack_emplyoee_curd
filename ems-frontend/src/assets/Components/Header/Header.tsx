@@ -1,31 +1,20 @@
-import React from "react";
+import type { User } from "../../../types/auth";
 
-const Header = () => {
+interface HeaderProps {
+  user: User;
+}
+
+const Header: React.FC<HeaderProps> = ({ user }) => {
   return (
-    <header className="bg-gradient-to-r from-blue-500 to-indigo-600 shadow-md py-4">
-      <nav className="container mx-auto flex items-center justify-between px-4">
-        <a className="text-white text-2xl font-bold tracking-wide" href="#">
-          Employee Management
-        </a>
-        <ul className="flex space-x-6">
-          <li>
-            <a href="#" className="text-white hover:text-indigo-200 transition">
-              Home
-            </a>
-          </li>
-          {/* <li>
-            <a href="#" className="text-white hover:text-indigo-200 transition">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-white hover:text-indigo-200 transition">
-              Contact
-            </a> */}
-          {/* </li> */}
-        </ul>
-      </nav>
-    </header>
+    <div className="flex justify-between items-center p-4 bg-blue-50">
+      <div className="text-xl font-bold tracking-wide">Employee Management</div>
+      <div className="flex items-center">
+        <span className="mr-2">Welcome, {user.name}</span>
+        <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+          {user.name.charAt(0).toUpperCase()}
+        </div>
+      </div>
+    </div>
   );
 };
 

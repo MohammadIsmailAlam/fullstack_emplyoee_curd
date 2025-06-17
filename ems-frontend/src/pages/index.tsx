@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import EmpTable from "./EmpTable";
-import type { Employee } from "../assets/empType";
+import type { Employee } from "../types/empType";
 import { useEffect, useMemo, useState } from "react";
 import type { FormData } from "./Form";
 import {

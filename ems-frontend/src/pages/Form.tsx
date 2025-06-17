@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Input from "../assets/Components/Input";
 import { FaRegSave } from "react-icons/fa";
-import type { Employee } from "../assets/empType";
+import type { Employee } from "../types/empType";
 import { useEffect } from "react";
 
 export interface FormData {

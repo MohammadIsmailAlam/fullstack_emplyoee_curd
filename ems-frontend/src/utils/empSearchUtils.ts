@@ -1,6 +1,6 @@
 // src/utils/employeeUtils.ts
 import { useEffect, type RefObject } from "react";
-import type { Employee } from "../assets/empType";
+import type { Employee } from "../types/empType";
 
 /**
  * Filters employees based on search term
