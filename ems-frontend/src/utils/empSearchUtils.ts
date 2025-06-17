@@ -41,8 +41,15 @@ export const sortEmployees = (
     const valueA = a[field];
     const valueB = b[field];
 
-    if (valueA < valueB) return direction === "asc" ? -1 : 1;
-    if (valueA > valueB) return direction === "asc" ? 1 : -1;
+    if (typeof valueA === "string" && typeof valueB === "string") {
+      if (valueA.toLowerCase() < valueB.toLowerCase())
+        return direction === "asc" ? -1 : 1;
+      if (valueA.toLowerCase() > valueB.toLowerCase())
+        return direction === "asc" ? 1 : -1;
+    } else if (typeof valueA === "number" && typeof valueB === "number") {
+      if (valueA < valueB) return direction === "asc" ? -1 : 1;
+      if (valueA > valueB) return direction === "asc" ? 1 : -1;
+    }
     return 0;
   });
 };
@@ -74,4 +81,21 @@ export const toggleDropdown = (
   setter: (id: number | null) => void
 ) => {
   setter(currentId === targetId ? null : targetId);
+};
+
+// src/utils/numberUtils.ts
+export const numEnToBn = (num: number | string): string => {
+  const englishNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const bengaliNumbers = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+
+  const numStr = num.toString();
+  let result = "";
+
+  for (let i = 0; i < numStr.length; i++) {
+    const char = numStr[i];
+    const index = englishNumbers.indexOf(char);
+    result += index !== -1 ? bengaliNumbers[index] : char;
+  }
+
+  return result;
 };

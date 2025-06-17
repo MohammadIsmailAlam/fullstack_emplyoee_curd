@@ -5,7 +5,7 @@ import type { Employee } from "../assets/empType";
 import { useEffect } from "react";
 
 export interface FormData {
-  firstName: string; // Changed from nameFirst to firstName
+  firstName: string;
   lastName: string;
   email: string;
 }

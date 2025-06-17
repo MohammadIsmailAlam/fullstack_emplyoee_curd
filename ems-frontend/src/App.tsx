@@ -1,4 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Emp from "./pages";
 import Header from "./assets/Components/Header/Header";
@@ -7,6 +9,19 @@ import SideBar from "./assets/Components/SideBar/SideBar";
 function App() {
   return (
     <BrowserRouter>
+      {/* Add ToastContainer here - it should be at the root level */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
       <div className="min-h-screen">
         {/* Sidebar */}
         <div className="fixed h-screen w-60 bg-gray-800 text-white z-40 toggol">
@@ -23,18 +38,9 @@ function App() {
           {/* Routed content */}
           <main className="flex-1 p-6 overflow-y-auto bg-gray-50">
             <Emp />
-            {/* <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/add" element={<AddBook />} />
-              <Route path="/edit/:id" element={<EditBook />} />
-            </Routes> */}
           </main>
         </div>
       </div>
-
-      {/* <SideBar />
-      <Header />
-      <Emp /> */}
     </BrowserRouter>
   );
 }
