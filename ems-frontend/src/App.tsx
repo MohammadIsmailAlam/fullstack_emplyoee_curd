@@ -1,8 +1,8 @@
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import Emp from "./components";
-import Header from "./components/Header/Header";
-import SideBar from "./components/SideBar/SideBar";
+import Emp from "./pages";
+import Header from "./assets/Components/Header/Header";
+import SideBar from "./assets/Components/SideBar/SideBar";
 
 function App() {
   return (

@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import Input from "../assets/Components/Input";
 import { FaRegSave } from "react-icons/fa";
+import type { Employee } from "../assets/empType";
+import { useEffect } from "react";
 
 export interface FormData {
   firstName: string; // Changed from nameFirst to firstName
@@ -10,14 +12,32 @@ export interface FormData {
 
 interface FormProps {
   onSubmit: (data: FormData) => void;
+  editEmployee?: Employee | null;
 }
 
-const Form = ({ onSubmit }: FormProps) => {
+const Form = ({ onSubmit, editEmployee }: FormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+    reset,
+  } = useForm<FormData>({
+    defaultValues: editEmployee || {
+      firstName: "",
+      lastName: "",
+      email: "",
+    },
+  });
+
+  useEffect(() => {
+    reset(
+      editEmployee || {
+        firstName: "",
+        lastName: "",
+        email: "",
+      }
+    );
+  }, [editEmployee, reset]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

@@ -76,7 +76,6 @@ const EmpTable = ({
                           className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-blue-100"
                           onClick={() => {
                             updateEmployee(emp);
-                            setOpenDropdownId(null);
                           }}
                           disabled={isLoading}
                         >

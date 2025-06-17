@@ -19,6 +19,7 @@ const Emp = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [editEmployee, setEditEmployee] = useState<Employee | null>(null);
 
   useEffect(() => {
     fetchEmployees();
@@ -38,29 +39,37 @@ const Emp = () => {
     return filterEmployees(employees, search);
   }, [employees, search]);
 
-  const onSubmit = (data: FormData) => {
-    setIsLoading(true);
-    addEmployee(data)
-      .then(() => {
-        toast.success("Employee added successfully");
-        fetchEmployees();
-        setIsDrawerOpen(false);
-      })
-      .catch((err) => {
-        toast.error(err.response?.data?.message || "Failed to add employee");
-      })
-      .finally(() => setIsLoading(false));
+  const handleUpdateEmployee = (employee: Employee) => {
+    console.log("Updating employee:", employee);
+    setEditEmployee(employee);
+    setIsDrawerOpen(true);
   };
 
-  const handleUpdateEmployee = (employee: Employee) => {
+  //////////////////////////////////////////////////////////////
+  const onSubmit = (data: FormData) => {
     setIsLoading(true);
-    updateEmployee(employee.id, employee)
+    const operation = editEmployee
+      ? updateEmployee(editEmployee.id, data)
+      : addEmployee(data);
+
+    operation
       .then(() => {
-        toast.success("Employee updated successfully");
+        toast.success(
+          editEmployee
+            ? "Employee updated successfully"
+            : "Employee added successfully"
+        );
         fetchEmployees();
+        setIsDrawerOpen(false);
+        setEditEmployee(null);
       })
       .catch((err) => {
-        toast.error(err.response?.data?.message || "Failed to update employee");
+        toast.error(
+          err.response?.data?.message ||
+            (editEmployee
+              ? "Failed to update employee"
+              : "Failed to add employee")
+        );
       })
       .finally(() => setIsLoading(false));
   };
@@ -115,12 +124,18 @@ const Emp = () => {
           />
         )}
 
-        <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+        <Drawer
+          isOpen={isDrawerOpen}
+          onClose={() => {
+            setIsDrawerOpen(false);
+            setEditEmployee(null);
+          }}
+        >
           <div className="p-4">
             <h2 className="text-base font-semibold mb-4 border-b border-gray-300 pb-2">
-              নতুন কর্মচারী যোগ করুন
+              {editEmployee ? " নতুন কর্মচারী যোগ করুন" : "তথ্য হালনাগাদ করুন"}
             </h2>
-            <Form onSubmit={onSubmit} />
+            <Form onSubmit={onSubmit} editEmployee={editEmployee} />
           </div>
         </Drawer>
       </div>
