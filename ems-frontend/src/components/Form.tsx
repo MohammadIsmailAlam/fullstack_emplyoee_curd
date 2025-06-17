@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
-import Input from "../assets/Components";
+import Input from "../assets/Components/Input";
+import { FaRegSave } from "react-icons/fa";
 
 export interface FormData {
   firstName: string; // Changed from nameFirst to firstName
-  lastName: string; // Changed from nameLast to lastName
+  lastName: string;
   email: string;
 }
 
@@ -26,13 +27,12 @@ const Form = ({ onSubmit }: FormProps) => {
         placeholder="নাম (ইংরেজি) লিখুন"
         registerProperty={{
           ...register("firstName", {
-            // Changed from nameFirst to firstName
             required: "নাম (ইংরেজি) লিখুন",
           }),
         }}
         isRequired
-        isError={!!errors?.firstName} // Changed from nameFirst to firstName
-        errorMessage={errors?.firstName?.message} // Changed from nameFirst to firstName
+        isError={!!errors?.firstName}
+        errorMessage={errors?.firstName?.message}
       />
 
       <Input
@@ -41,13 +41,12 @@ const Form = ({ onSubmit }: FormProps) => {
         placeholder="নাম (ইংরেজি) লিখুন"
         registerProperty={{
           ...register("lastName", {
-            // Changed from nameLast to lastName
             required: "নাম (ইংরেজি) লিখুন",
           }),
         }}
         isRequired
-        isError={!!errors?.lastName} // Changed from nameLast to lastName
-        errorMessage={errors?.lastName?.message} // Changed from nameLast to lastName
+        isError={!!errors?.lastName}
+        errorMessage={errors?.lastName?.message}
       />
 
       <Input
@@ -67,13 +66,15 @@ const Form = ({ onSubmit }: FormProps) => {
         isError={!!errors?.email}
         errorMessage={errors?.email?.message}
       />
-
-      <button
-        type="submit"
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-      >
-        Submit
-      </button>
+      <div className="flex justify-center mt-8">
+        <button
+          type="submit"
+          className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm  rounded p-1.5 shadow transition-all duration-200"
+        >
+          দাখিল করুন
+          <FaRegSave className="text-sm" />
+        </button>
+      </div>
     </form>
   );
 };

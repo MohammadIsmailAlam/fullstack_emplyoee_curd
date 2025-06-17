@@ -13,7 +13,7 @@ const Header = () => {
               Home
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="#" className="text-white hover:text-indigo-200 transition">
               About
             </a>
@@ -21,8 +21,8 @@ const Header = () => {
           <li>
             <a href="#" className="text-white hover:text-indigo-200 transition">
               Contact
-            </a>
-          </li>
+            </a> */}
+          {/* </li> */}
         </ul>
       </nav>
     </header>
